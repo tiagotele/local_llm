@@ -44,7 +44,7 @@ def insert_item(connection, file_name, embedding):
     with connection.cursor() as cursor:
         embedding_str = str(embedding)
         cursor.execute(
-            "INSERT INTO items_test (description, embedding) VALUES (%s, %s)",
+            "INSERT INTO items_test (file_name, embedding) VALUES (%s, %s)",
             (file_name, embedding_str),
         )
         connection.commit()

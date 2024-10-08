@@ -1,7 +1,8 @@
 # Play with LLMs using llamaindex
 
 ## Requirements
-- ollama
+- [Ollama](https://ollama.com/)
+- [Docker](https://www.docker.com/)
 
 ## Seeting up
 
