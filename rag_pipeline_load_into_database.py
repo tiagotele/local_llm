@@ -2,7 +2,6 @@ import os
 from llama_index.embeddings.huggingface import HuggingFaceEmbedding
 from llama_index.vector_stores.postgres import PGVectorStore
 from llama_index.readers.file import PyMuPDFReader
-
 from llama_index.core.node_parser import SentenceSplitter
 from llama_index.core.schema import TextNode, MetadataMode
 
