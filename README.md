@@ -22,6 +22,11 @@ pip install -r requirements
 ollama pull llama3
 ```
 
+### Starting Postgres with docker
+```bash
+docker compose -f docker/docker-compose.yaml up
+```
+
 ## Running
 ```bash
 python3 llama_index_single_RAG_pipeline.py
