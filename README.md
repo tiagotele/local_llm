@@ -1,5 +1,9 @@
 # Play with LLMs using llamaindex
 
+This shows RAG pipeline.
+
+The [llama_index_single_RAG_pipeline.py](llama_index_single_RAG_pipeline.py) shows single idea how to run RAG pipeline  
+
 ## Requirements
 - [Ollama](https://ollama.com/)
 - [Docker](https://www.docker.com/)
@@ -18,7 +22,7 @@ pip install -r requirements
 ollama pull llama3
 ```
 
-## Runningh
+## Running
 ```bash
-python3 llama_index_RAG_pipeline.py
+python3 llama_index_single_RAG_pipeline.py
 ```
