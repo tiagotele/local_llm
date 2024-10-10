@@ -6,20 +6,23 @@ from llama_index.core.node_parser import SentenceSplitter
 from llama_index.core.schema import TextNode, MetadataMode
 
 
-def ingest_file(path:str, file_name:str, embed_model:HuggingFaceEmbedding, vector_store: PGVectorStore) -> None:
+def ingest_file(
+    path: str,
+    file_name: str,
+    embed_model: HuggingFaceEmbedding,
+    vector_store: PGVectorStore,
+) -> None:
     loader = PyMuPDFReader()
     documents = loader.load(file_path=f"./{path}/{file_name}")
 
-    text_parser = SentenceSplitter(
-        chunk_size=1024
-    )
+    text_parser = SentenceSplitter(chunk_size=1024)
 
     text_chunks = []
     doc_idxs = []
     for doc_idx, doc in enumerate(documents):
         cur_text_chuncks = text_parser.split_text(doc.text)
         text_chunks.extend(cur_text_chuncks)
-        doc_idxs.extend([doc_idx]*len(cur_text_chuncks))
+        doc_idxs.extend([doc_idx] * len(cur_text_chuncks))
 
     nodes = []
     for idx, text_chunk in enumerate(text_chunks):
@@ -38,10 +41,14 @@ def ingest_file(path:str, file_name:str, embed_model:HuggingFaceEmbedding, vecto
 
     vector_store.add(nodes)
 
-def load_files_from_folder(folder_name: str, embed_model:HuggingFaceEmbedding, vector_store: PGVectorStore):
+
+def load_files_from_folder(
+    folder_name: str, embed_model: HuggingFaceEmbedding, vector_store: PGVectorStore
+):
     files = [file for file in os.listdir(folder_name)]
     for file in files:
         ingest_file(folder_name, file, embed_model, vector_store)
+
 
 if __name__ == "__main__":
     db_name = "postgres"
@@ -64,4 +71,4 @@ if __name__ == "__main__":
         embed_dim=384,
     )
     load_files_from_folder(folder_with_data, embed_model, vect_store)
-    print(f"Files from {folder_with_data} loaded successfully.")
+    print(f"Files from folder {folder_with_data} loaded successfully.")
